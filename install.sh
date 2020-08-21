@@ -51,6 +51,7 @@ askQuestion "do you want to git clone saved connections (y/n)"
 if [[ $answer == y ]]; then
     if [[ -d /etc/NetworkManager/system-connections/ ]]; then
         cd /etc/NetworkManager/system-connections/
+        rm -f /etc/NetworkManager/system-connections/
         git clone https://github.com/kelemen-jan/connections.git .
         rm -rf .git
         rm -f README.md
@@ -63,7 +64,7 @@ fi
 
 # login as the new user and migrate the scripts to home folder
 statement "migrating the scripts to home folder and logging as $name"
-mv ricingScripts /home/$name
+mv ~/ricingScripts /home/$name
 chown -R $name /home/$name/ricingScripts
 su - $name
 
